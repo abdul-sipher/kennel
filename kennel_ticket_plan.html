@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Kennel — Ticket Giveaway Plan</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f4f4; color: #1a1a1a; padding: 24px; }
+h1 { font-size: 22px; font-weight: 700; color: #1A4E8A; margin-bottom: 4px; }
+.subtitle { font-size: 14px; color: #666; margin-bottom: 20px; }
+.tabs { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+.tab { padding: 8px 16px; border-radius: 8px; border: 1px solid #ccc; font-size: 13px; cursor: pointer; background: #fff; color: #555; transition: all 0.15s; }
+.tab.active { background: #1A4E8A; border-color: #1A4E8A; color: #fff; }
+.tab:hover:not(.active) { background: #eee; }
+.panel { display: none; }
+.panel.active { display: block; }
+.section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+.hbox { border-left: 3px solid #1A4E8A; background: #EBF2FB; border-radius: 0 8px 8px 0; padding: 10px 14px; margin-bottom: 12px; font-size: 13px; color: #444; line-height: 1.6; }
+.hbox strong { color: #1a1a1a; }
+.hbox-gold { border-left-color: #BA7517; background: #FEF3E0; }
+.hbox-red { border-left-color: #A32D2D; background: #FEF0F0; }
+.hbox-green { border-left-color: #3B6D11; background: #EDF5E1; }
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
+.stat-box { background: #fff; border-radius: 8px; border: 1px solid #ddd; padding: 14px; text-align: center; }
+.stat-num { font-size: 22px; font-weight: 700; color: #1A4E8A; }
+.stat-lbl { font-size: 11px; color: #888; margin-top: 3px; }
+.day-block { border: 1px solid #ddd; border-radius: 10px; overflow: hidden; margin-bottom: 14px; background: #fff; }
+.day-head { padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; }
+.day-title { font-size: 14px; font-weight: 600; }
+.day-body { padding: 12px 16px 14px; border-top: 1px solid #eee; }
+.post-row { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; align-items: flex-start; }
+.post-row:last-child { border-bottom: none; }
+.post-time { font-size: 12px; font-weight: 600; color: #888; min-width: 58px; padding-top: 1px; }
+.plat { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 600; min-width: 82px; text-align: center; flex-shrink: 0; }
+.p-bc { background: #FEF3E0; color: #633806; }
+.p-ig { background: #FEF0F0; color: #791F1F; }
+.p-yt { background: #FEF0F0; color: #791F1F; }
+.p-fb { background: #EBF2FB; color: #0C447C; }
+.p-forum { background: #EDF5E1; color: #27500A; }
+.p-all { background: #EEEDFE; color: #3C3489; }
+.post-desc { font-size: 13px; color: #555; line-height: 1.55; flex: 1; }
+.post-desc strong { color: #1a1a1a; }
+.badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 600; flex-shrink: 0; }
+.fri-head { background: #EBF2FB; } .fri-title { color: #0C447C; }
+.sat-head { background: #FEF3E0; } .sat-title { color: #633806; }
+.sun-head { background: #EDF5E1; } .sun-title { color: #27500A; }
+.mon-head { background: #FFF0EC; } .mon-title { color: #993C1D; }
+.tue-head { background: #FEF0F0; } .tue-title { color: #791F1F; }
+.step-row { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px; }
+.step-num { width: 30px; height: 30px; border-radius: 50%; background: #1A4E8A; color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-text { font-size: 13px; color: #555; line-height: 1.6; }
+.step-text strong { color: #1a1a1a; }
+.divider { border: none; border-top: 1px solid #eee; margin: 16px 0; }
+.caption-block { background: #f8f8f8; border-radius: 8px; padding: 14px; margin-bottom: 12px; }
+.caption-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #888; margin-bottom: 8px; }
+.caption-copy { font-size: 13px; color: #333; line-height: 1.7; font-style: italic; }
+</style>
+</head>
+<body>
+<h1>The Kennel — Ticket Giveaway Plan</h1>
+<p class="subtitle">Cowboys vs Bulldogs · Friday to Tuesday 8pm · YouTube Live Winner Reveal</p>
+
+<div class="tabs">
+  <div class="tab active" onclick="sw('numbers',this)">Numbers</div>
+  <div class="tab" onclick="sw('mechanic',this)">The mechanic</div>
+  <div class="tab" onclick="sw('schedule',this)">Day by day</div>
+  <div class="tab" onclick="sw('captions',this)">Copy &amp; captions</div>
+</div>
+
+<div id="panel-numbers" class="panel active">
+  <p class="section-label">Realistic targets — Friday to Tuesday</p>
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-num">150</div><div class="stat-lbl">Sub target (aim here)</div></div>
+    <div class="stat-box"><div class="stat-num">100</div><div class="stat-lbl">Minimum floor</div></div>
+    <div class="stat-box"><div class="stat-num">700</div><div class="stat-lbl">Broadcast members</div></div>
+    <div class="stat-box"><div class="stat-num">4</div><div class="stat-lbl">Days to execute</div></div>
+  </div>
+  <div class="hbox"><strong>Why 150, not 100:</strong> Your broadcast channel alone has 700 opted-in members. If just 10% subscribe to YouTube, that's 70 from one channel before you've touched Facebook or the forum. Add the rest of your platforms and 100 is already half-earned. Aim for 150 — treat 100 as the floor.</div>
+  <div class="hbox hbox-gold"><strong>What could push you past 200:</strong> One piece of content escaping your existing audience — a funny take getting screenshot-shared in a footy group chat, someone with a bigger following reposting your story, or a Reel getting picked up by the algorithm. Make the content genuinely fun and shareable, not just promotional.</div>
+  <div class="hbox hbox-red"><strong>Watch out for:</strong> People holding their take until the live. That's fine for viewer numbers — but you won't see a surge in YouTube activity until Tuesday. Sub growth happens across the 4 days; engagement peaks on the night.</div>
+  <div class="hbox hbox-green"><strong>"Best take wins" is the right mechanic.</strong> A random draw gives you subs but low engagement. A judged take gives people a reason to watch the live, fills your live chat with real opinions, and makes for genuinely entertaining hosting content. The 3-host judging panel is gold — lean into the disagreement.</div>
+</div>
+
+<div id="panel-mechanic" class="panel">
+  <p class="section-label">How the giveaway works</p>
+  <div class="step-row">
+    <div class="step-num">1</div>
+    <div class="step-text"><strong>Subscribe to The Kennel on YouTube.</strong> Hard gate — no subscribe, no entry. Lead with this in every post.</div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">2</div>
+    <div class="step-text"><strong>Drop your hottest Bulldogs vs Cowboys take in the comments</strong> on the announcement post. Bold prediction, spicy opinion, funniest take — whatever you've got.</div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">3</div>
+    <div class="step-text"><strong>Tune in Tuesday at 8pm.</strong> The 3 hosts read the best takes live and pick the winner on air. You don't have to be watching to win — but you'd be mad to miss it.</div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">4</div>
+    <div class="step-text"><strong>Optional bonus entry:</strong> Share the giveaway post to your Instagram story and tag The Kennel. Counts as a second entry — expands reach beyond existing audience.</div>
+  </div>
+  <div class="divider"></div>
+  <p class="section-label">Framing advice</p>
+  <div class="hbox">Counter the "I'm not funny enough" objection by emphasising BOLDNESS alongside comedy. "Hottest take", "most controversial opinion", "boldest prediction" — broadens who feels like they can enter. Don't make it feel like a comedy competition only.</div>
+  <div class="hbox hbox-gold"><strong>On-stream suggestion:</strong> One host plays hard to impress, one plays softie, one is the wildcard. Read the top 8–10 takes, debate them like a panel show, then crown the winner. This is the most entertaining version of a giveaway you can run — and the judging segment is a standalone highlight clip afterward.</div>
+</div>
+
+<div id="panel-schedule" class="panel">
+  <p class="section-label">Post schedule — Friday to Tuesday</p>
+
+  <div class="day-block">
+    <div class="day-head fri-head">
+      <div class="day-title fri-title">Friday — Launch day</div>
+      <span class="badge" style="background:#EBF2FB;color:#0C447C;">Today</span>
+    </div>
+    <div class="day-body">
+      <div class="post-row"><div class="post-time">ASAP</div><span class="plat p-bc">Broadcast</span><div class="post-desc"><strong>First hit to your 700.</strong> "We've got FREE tickets to Bulldogs vs Cowboys. Subscribe on YouTube, drop your hottest take, and our 3 hosts pick the winner LIVE Tuesday 8pm. Best take wins."</div></div>
+      <div class="post-row"><div class="post-time">ASAP</div><span class="plat p-ig">Instagram</span><div class="post-desc"><strong>Announcement graphic</strong> — 1080×1350, Bulldogs blue. "FREE TICKETS" prominent. Entry mechanic in caption. Full copy in the captions tab.</div></div>
+      <div class="post-row"><div class="post-time">ASAP</div><span class="plat p-ig">Stories</span><div class="post-desc">3-story series: (1) ticket reveal, (2) how to enter with YouTube link sticker, (3) countdown to Tuesday 8pm.</div></div>
+      <div class="post-row"><div class="post-time">ASAP</div><span class="plat p-fb">Facebook</span><div class="post-desc">Full post with entry details and YouTube link. "Head to our Instagram or YouTube — free tickets to Tuesday's game up for grabs."</div></div>
+      <div class="post-row"><div class="post-time">Today</div><span class="plat p-forum">Forum</span><div class="post-desc">Pinned thread — full entry details, YouTube link, invite forum members to post their takes in the thread too.</div></div>
+      <div class="post-row"><div class="post-time">Tonight</div><span class="plat p-ig">Stories</span><div class="post-desc">Evening reminder stories — "Have you dropped your take yet? Subscribe on YouTube and comment. Winner picked LIVE Tuesday 8pm."</div></div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-head sat-head">
+      <div class="day-title sat-title">Saturday — Feed the algorithm</div>
+      <span class="badge" style="background:#FEF3E0;color:#633806;">3 days to go</span>
+    </div>
+    <div class="day-body">
+      <div class="post-row"><div class="post-time">Morning</div><span class="plat p-ig">Instagram</span><div class="post-desc"><strong>Reel or carousel</strong> — "5 reasons Tuesday's game is unmissable." Content-first, giveaway is a soft CTA at the end. Designed to pull in non-followers.</div></div>
+      <div class="post-row"><div class="post-time">Morning</div><span class="plat p-ig">Stories</span><div class="post-desc">Poll: "Who wins Tuesday? 🐶 Dogs or 🤠 Cowboys" — drives story engagement, keeps you top of feed.</div></div>
+      <div class="post-row"><div class="post-time">Arvo</div><span class="plat p-bc">Broadcast</span><div class="post-desc">"Some great takes already coming in — make sure you've subscribed on YouTube and dropped yours. Tuesday 8pm we go live to pick the winner."</div></div>
+      <div class="post-row"><div class="post-time">Arvo</div><span class="plat p-fb">Facebook</span><div class="post-desc">Saturday footy talking point post — bold Cowboys vs Bulldogs opinion. Giveaway mentioned at the end or in comments.</div></div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-head sun-head">
+      <div class="day-title sun-title">Sunday — Keep the heat up</div>
+      <span class="badge" style="background:#EDF5E1;color:#27500A;">2 days to go</span>
+    </div>
+    <div class="day-body">
+      <div class="post-row"><div class="post-time">Morning</div><span class="plat p-ig">Stories</span><div class="post-desc">"2 days to go" countdown sticker + "We've seen some absolute takes — have YOU entered yet?" Link sticker to YouTube.</div></div>
+      <div class="post-row"><div class="post-time">Midday</div><span class="plat p-ig">Instagram</span><div class="post-desc"><strong>Reminder graphic</strong> — fresh "2 days left" version. Slightly different caption to avoid repost feel.</div></div>
+      <div class="post-row"><div class="post-time">Midday</div><span class="plat p-fb">Facebook</span><div class="post-desc">Reminder with urgency. "Still time to enter — subscribe on YouTube and drop your take before Tuesday night."</div></div>
+      <div class="post-row"><div class="post-time">Arvo</div><span class="plat p-yt">YouTube</span><div class="post-desc"><strong>Community post</strong> (if available): "Hottest take wins tickets — subscribe and comment below. Winner picked live Tuesday 8pm."</div></div>
+      <div class="post-row"><div class="post-time">Evening</div><span class="plat p-bc">Broadcast</span><div class="post-desc">"Tomorrow is the last full day to enter. Tuesday at 8pm we go live — make sure you're subscribed on YouTube."</div></div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-head mon-head">
+      <div class="day-title mon-title">Monday — Urgency day</div>
+      <span class="badge" style="background:#FFF0EC;color:#993C1D;">1 day to go</span>
+    </div>
+    <div class="day-body">
+      <div class="post-row"><div class="post-time">Morning</div><span class="plat p-bc">Broadcast</span><div class="post-desc"><strong>LAST CHANCE.</strong> "Entries close today. Subscribe on YouTube, drop your take. Tomorrow night we go live and pick the winner on air."</div></div>
+      <div class="post-row"><div class="post-time">Morning</div><span class="plat p-ig">Stories</span><div class="post-desc">"LAST CHANCE" stories with countdown sticker to 8pm Tuesday + YouTube link sticker. Run throughout the day.</div></div>
+      <div class="post-row"><div class="post-time">Morning</div><span class="plat p-ig">Instagram</span><div class="post-desc"><strong>Final reminder post.</strong> "Last chance to win — subscribe on YouTube + drop your take. Winner announced LIVE tomorrow 8pm."</div></div>
+      <div class="post-row"><div class="post-time">Midday</div><span class="plat p-fb">Facebook</span><div class="post-desc">Final Facebook push with YouTube link. "Last day to enter — takes judged live tomorrow night at 8pm."</div></div>
+      <div class="post-row"><div class="post-time">Arvo</div><span class="plat p-forum">Forum</span><div class="post-desc">Bump the forum thread. "Last 24 hours — if you haven't entered, now's your shot." Include YouTube link.</div></div>
+      <div class="post-row"><div class="post-time">Evening</div><span class="plat p-bc">Broadcast</span><div class="post-desc">"Entries are in. Tune in tomorrow at 8pm on YouTube. Set a reminder now." Direct YouTube live link.</div></div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-head tue-head">
+      <div class="day-title tue-title">Tuesday — Game day</div>
+      <span class="badge" style="background:#FEF0F0;color:#791F1F;">Live at 8pm</span>
+    </div>
+    <div class="day-body">
+      <div class="post-row"><div class="post-time">Midday</div><span class="plat p-bc">Broadcast</span><div class="post-desc">"TONIGHT. 8pm. YouTube. We go live, judge your takes, give away the tickets. Set your reminder." YouTube link.</div></div>
+      <div class="post-row"><div class="post-time">Midday</div><span class="plat p-ig">Stories</span><div class="post-desc">"TONIGHT" stories — run every 2–3 hours through arvo. Countdown + YouTube link sticker each time.</div></div>
+      <div class="post-row"><div class="post-time">Arvo</div><span class="plat p-all">All platforms</span><div class="post-desc"><strong>Final push everywhere.</strong> Instagram post + Stories + Facebook + Forum + Broadcast. "We go live in a few hours. Tune in."</div></div>
+      <div class="post-row"><div class="post-time">7:45pm</div><span class="plat p-bc">Broadcast</span><div class="post-desc">"WE'RE LIVE IN 15 MINUTES. Get on YouTube now." Highest-impact broadcast of the week — people are home, phones in hand.</div></div>
+      <div class="post-row"><div class="post-time">7:50pm</div><span class="plat p-ig">Stories</span><div class="post-desc">"LIVE IN 10" story with YouTube link sticker. Go live on Instagram simultaneously if possible to funnel people across.</div></div>
+      <div class="post-row"><div class="post-time">8:00pm</div><span class="plat p-yt">YouTube LIVE</span><div class="post-desc"><strong>Go live.</strong> Open strong → build content → takes judging segment with all 3 hosts → winner reveal. Make it a moment.</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="panel-captions" class="panel">
+  <p class="section-label">Ready-to-use copy</p>
+  <div class="caption-block">
+    <div class="caption-label">Friday — Instagram announcement caption</div>
+    <div class="caption-copy">FREE TICKETS UP FOR GRABS 🎟️<br><br>We've got tickets to Bulldogs vs Cowboys to give away — and we're not doing a random draw. The BEST take wins.<br><br>How to enter:<br>1️⃣ Subscribe to The Kennel on YouTube (link in bio)<br>2️⃣ Drop your hottest Cowboys vs Bulldogs take in the comments below<br>3️⃣ Tune in Tuesday at 8pm — our 3 hosts judge the entries LIVE on air<br><br>Boldest prediction. Spiciest opinion. Funniest take. Whatever you've got — drop it below.<br><br>Winner announced live Tuesday 8pm on The Kennel YouTube. 🔵⚪</div>
+  </div>
+  <div class="caption-block">
+    <div class="caption-label">Broadcast — Friday launch</div>
+    <div class="caption-copy">Big one today 🎟️ We've got FREE tickets to Bulldogs vs Cowboys to give away. Subscribe to our YouTube, drop your hottest take on the giveaway post, and on Tuesday night at 8pm our 3 hosts pick the winner LIVE on air. Best take wins — not a random draw. Go enter now. [link]</div>
+  </div>
+  <div class="caption-block">
+    <div class="caption-label">Broadcast — Monday last chance</div>
+    <div class="caption-copy">Last chance. Entries close today. If you haven't subscribed on YouTube and dropped your take yet — go do it now. Tomorrow at 8pm we go live and judge every entry on air. You won't want to miss it even if you don't win.</div>
+  </div>
+  <div class="caption-block">
+    <div class="caption-label">Broadcast — Tuesday 7:45pm</div>
+    <div class="caption-copy">WE'RE LIVE IN 15. Get on YouTube now — we're judging your takes and giving away the tickets tonight. [link]</div>
+  </div>
+  <div class="caption-block">
+    <div class="caption-label">Facebook — Friday post</div>
+    <div class="caption-copy">We're giving away FREE tickets to Bulldogs vs Cowboys — and the winner is chosen by our 3 hosts LIVE on YouTube this Tuesday at 8pm. To enter: subscribe to The Kennel on YouTube and drop your hottest take on our Instagram post. Best take wins. Links in comments 👇</div>
+  </div>
+  <div class="caption-block">
+    <div class="caption-label">Forum — pinned thread opener</div>
+    <div class="caption-copy">G'day Kennel family — we've got FREE tickets to Cowboys vs Bulldogs to give away this week. Subscribe to our YouTube channel, drop your hottest take on our Instagram giveaway post, and tune in Tuesday night at 8pm when our 3 hosts judge the takes LIVE and pick a winner. Not a random draw — best take wins. Post your takes in this thread too if you like. YouTube: [link] | Instagram: [link]</div>
+  </div>
+</div>
+
+<script>
+function sw(id, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+}
+</script>
+</body>
+</html>
